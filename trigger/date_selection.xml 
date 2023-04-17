@@ -1,0 +1,51 @@
+·       Date should be displayed only after the selection of the date, month, year.·       User should be able to view the selected dates from the calendar.
+
+<?xml version="1.0" encoding="utf-8"?>
+<trigger>
+  <name>Date_Selection</name>
+  <description>
+    Trigger for user to select date, month, year in calendar
+  </description>
+  <code>
+    <![CDATA[
+      function dateSelection(){
+        // Get current date
+        var currentDate = new Date();
+        // Get current month
+        var currentMonth = currentDate.getMonth();
+        // Get current year
+        var currentYear = currentDate.getFullYear();
+        // Display calender
+        var calenderHTML = "<div id='calendar'><select id='month'>";
+        for (var i = 0; i < 12; i++) {
+          calenderHTML += "<option value='"+i+"' "+(i == currentMonth ? "selected" : "")+">"+monthNames[i]+"</option>";
+        }
+        calenderHTML += "</select><input type='number' id='year' value='"+currentYear+"' /><div class='calendar-body'>";
+        // Get start day of the month
+        var startDay = new Date(currentYear, currentMonth, 1).getDay(),
+            numDays = new Date(currentYear, currentMonth+1, 0).getDate(),
+            date = 1;
+        // Loop through all rows
+        for (var j = 0; j < 6; j++) {
+          // Loop through all columns
+          calenderHTML += "<div class='row'>";
+          for (var k = 0; k < 7; k++) {
+            if(j == 0 && k < startDay || date > numDays){
+              calenderHTML += "<div class='day empty'></div>";
+            }else{
+              calenderHTML += "<div class='day' data-date='"+date+"'>"+date+"</div>";
+              date++;
+            }
+          }
+          calenderHTML += "</div>";
+        }
+        calenderHTML += "</div></div>";
+        // Append HTML
+        document.getElementById('calendar-container').innerHTML = calenderHTML;
+      }
+    ]]>
+  </code>
+  <script>
+    dateSelection();
+  </script>
+</trigger>
