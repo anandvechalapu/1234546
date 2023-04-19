@@ -1,45 +1,30 @@
-package com.1235.model;
-
-import javax.persistence.*;
-
 @Entity
-@Table(name="branches")
+@Table(name = "branches")
 public class Branches {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
     private Long id;
 
-    @Column(name="wholesaler")
+    @Column(name = "number")
+    private String number;
+
+    @Column(name = "wholesaler")
     private String wholesaler;
 
-    @Column(name="number")
-    private Integer number;
+    @Column(name = "sub_functionalities")
+    private List<String> subFunctionalities;
 
-    @Column(name="name")
-    private String name;
+    @Column(name = "has_permission")
+    private Boolean hasPermission;
 
-    @Column(name="nfrn_region")
-    private String nfrnRegion;
+    public Branches() {}
 
-    @Column(name="tv_region")
-    private String tvRegion;
-
-    @Column(name="no_aatsat_values")
-    private String noAATSATValues;
-
-    @Column(name="active")
-    private String active;
-
-    @Column(name="date_created")
-    private String dateCreated;
-
-    @Column(name="last_modified")
-    private String lastModified;
-
-    public Branches() {
-
+    public Branches(String number, String wholesaler, List<String> subFunctionalities, Boolean hasPermission) {
+        this.number = number;
+        this.wholesaler = wholesaler;
+        this.subFunctionalities = subFunctionalities;
+        this.hasPermission = hasPermission;
     }
 
     public Long getId() {
@@ -50,6 +35,14 @@ public class Branches {
         this.id = id;
     }
 
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     public String getWholesaler() {
         return wholesaler;
     }
@@ -58,67 +51,20 @@ public class Branches {
         this.wholesaler = wholesaler;
     }
 
-    public Integer getNumber() {
-        return number;
+    public List<String> getSubFunctionalities() {
+        return subFunctionalities;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setSubFunctionalities(List<String> subFunctionalities) {
+        this.subFunctionalities = subFunctionalities;
     }
 
-    public String getName() {
-        return name;
+    public Boolean getHasPermission() {
+        return hasPermission;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setHasPermission(Boolean hasPermission) {
+        this.hasPermission = hasPermission;
     }
 
-    public String getNFRNRegion() {
-        return nfrnRegion;
-    }
-
-    public void setNFRNRegion(String nfrnRegion) {
-        this.nfrnRegion = nfrnRegion;
-    }
-
-    public String getTVRegion() {
-        return tvRegion;
-    }
-
-    public void setTVRegion(String tvRegion) {
-        this.tvRegion = tvRegion;
-    }
-
-    public String getNoAATSATValues() {
-        return noAATSATValues;
-    }
-
-    public void setNoAATSATValues(String noAATSATValues) {
-        this.noAATSATValues = noAATSATValues;
-    }
-
-    public String getActive() {
-        return active;
-    }
-
-    public void setActive(String active) {
-        this.active = active;
-    }
-
-    public String getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(String dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-    public String getLastModified() {
-        return lastModified;
-    }
-
-    public void setLastModified(String lastModified) {
-        this.lastModified = lastModified;
-    }
 }
